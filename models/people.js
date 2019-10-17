@@ -16,8 +16,8 @@ const schema = {
 };
 
 class People extends Model {
-  constructor(file) {
-    super(schema);
+  constructor() {
+    super(schema, 'people');
   }
 }
 
