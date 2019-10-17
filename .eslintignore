@@ -1,0 +1,4 @@
+node_modules/**
+model.js
+supertester.js
+model.test.js
