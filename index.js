@@ -7,5 +7,5 @@ const people = new People();
 people.create({
   firstName: 'Sarah',
   lastName: 'Smalls',
-  pets: [{ name: 'Rex' }, { name: 'Tbone' }]
+  pets: [{ name: 'Rex' }, { name: 'Tbone' }],
 });

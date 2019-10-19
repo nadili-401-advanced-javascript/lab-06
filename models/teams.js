@@ -8,8 +8,8 @@ const schema = {
     type: String,
     required: true,
     lowercase: true,
-    enum: ['red', 'blue', 'yellow']
-  }
+    enum: ['red', 'blue', 'yellow'],
+  },
 };
 
 class Teams extends Model {
