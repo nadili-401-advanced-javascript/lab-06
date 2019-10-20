@@ -1,3 +1,4 @@
 node_modules/**
 model.js
 index.js
+model.test.js
