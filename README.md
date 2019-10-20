@@ -16,7 +16,15 @@
 
 ### Setup
 #### Running the app
-* `node index.js [name of the person or team]`
+* npm start
+* json-server --watch ./data/db.json
+* http://localhost:3000
+
+### In TERMINAL
+* `node index.js [name of the person or team]` 
+    * * `node index.js` <= Prints Number of Teams and Number of People
+    * * `node index.js Nadya Ilinskaya` <= Prints data related to that person
+    * * `node index.js Yellow Rhino` <= Prints team name, color and all the people on that team
 
 
   
@@ -26,7 +34,6 @@
 
 (!!!NOTE!!! - async files are included in eslintignore as linter does not recognize async-await syntaxes:
 model.js
-supertester.js
 model.test.js 
 )
 

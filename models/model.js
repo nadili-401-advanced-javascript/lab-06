@@ -9,50 +9,92 @@ class Model {
     this.url = 'http://localhost:3000/' + url;
   }
 
-  async get(id) {
-    // HTTP method to get
-    // this.url + / + {id}
-    let path = 'https://swapi.co/api/people/1';
+  async get() {
+    // HTTP method to get   
+    let path = this.url;
     console.log('path:', path);
 
     let res = await fetch(path, { method: 'GET' });
     let json = await res.json();
 
-    if (res.ok) console.log('Data:', json);
-    else console.log(res.statusText);
+    if (res.ok) return json;
+    else return res.statusText;
   }
 
-  getFromField(query) {}
+  async getFromField(query) {
+    let path=this.url+'?';
+    for (let key in query){
+      path += key+'='+query[key]+'&';
+    }
+   console.log('path:', path);
+   let res = await fetch(path, { method: 'GET' });
+    let json = await res.json();
+    if (res.ok) return json;
+    else return res.statusText;    
+  }
 
   async create(record) {
-    // technically we should sanitize()
-    let res = await fetch(this.url, {
-      method: 'POST',
-      body: JSON.stringify(record),
-      headers: { 'Content-Type': 'application/json' }
-    });
+    if (sanitize (record)){
+        let res = await fetch(this.url, {
+          method: 'POST',
+          body: JSON.stringify(record),
+          headers: { 'Content-Type': 'application/json' }
+        });
 
-    // if url is good
-    // return
-    // res = { ok: true, statusText: '',  json => async() {
-    // something > returns a object {}
-    // }}
-
-    if (res.ok) {
-      let json = await res.json();
-      console.log('Data:', json);
-    } else console.log(res.statusText);
-
-    // return a promise
+        if (res.ok) {
+          let json = await res.json();
+          console.log('Data:', json);
+        } else console.log(res.statusText);
+      }else { 
+        console.log('wrong format!');
+      } 
   }
 
-  update(_id, record) {}
+  
+   async update (id, record) {
+    let path = this.url + '/' + id;
+    if (sanitize (record)) {
+      let res = await fetch(path, {
+        method: 'PUT',
+        body: JSON.stringify(record),
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-  delete(_id) {}
+      if(res.ok) {
+        let json = await res.json();
+        return json;
+      } else {
+        console.log(res.statusText);
+      }
+    }
+  }
 
-  count(query) {}
+  async delete (id) {
+    let path = this.url + '/' + id;
+    let res = await fetch(path, {
+      method: 'DELETE',
+    });
 
-  sanitize(record) {}
+    if(res.ok) {
+      console.log(`Deleted!`);
+    } else {
+      console.log(res.statusText);
+    }
+  }
+
+    async count () {
+      let path = this.url;
+  
+      let res = await fetch(path, { method: 'GET'});
+      let json = await res.json();
+      if(res.ok) {
+        return json.length;
+      }
+    }
+      
+    sanitize (record) {
+      return validate(record, this.schema);
+    }
 }
 
 module.exports = Model;
