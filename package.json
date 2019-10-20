@@ -4,17 +4,23 @@
   "description": "",
   "main": "players-schema.js",
   "scripts": {
+    "lint": "eslint **/*.js",
     "test": "jest --verbose",
+    "start": "node index.js",
     "test-watch": "jest --watchAll --verbose"
   },
   "jest": {
     "testEnvironment": "node"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nadya",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^6.5.1",
+    "faker": "^4.1.0",
     "jest": "^24.9.0",
-    "jsonschema": "^1.2.4"
+    "jest-fetch-mock": "^2.1.2",
+    "jsonschema": "^1.2.4",
+    "node-fetch": "^2.6.0"
   }
 }

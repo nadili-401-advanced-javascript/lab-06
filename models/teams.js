@@ -8,13 +8,13 @@ const schema = {
     type: String,
     required: true,
     lowercase: true,
-    enum: ['red', 'blue', 'yellow']
-  }
+    enum: ['red', 'blue', 'yellow', 'purple'],
+  },
 };
 
 class Teams extends Model {
   constructor() {
-    super(schema);
+    super(schema, 'teams');
   }
 }
 

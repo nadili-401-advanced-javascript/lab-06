@@ -1,4 +1,4 @@
 node_modules/**
 model.js
-supertester.js
+index.js
 model.test.js
